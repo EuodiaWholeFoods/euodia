@@ -43,7 +43,7 @@ export const initializePaystack = async (email, amount) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PRIVATE_PAYSTACK_SECRET_KEY}`,
         },
       }
     );
