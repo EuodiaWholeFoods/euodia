@@ -7,7 +7,7 @@ export const verifyPaystackPayment = async (trxref) => {
     const paystackApiUrl = `https://api.paystack.co/transaction/verify/${trxref}`;
     const response = await axios.get(paystackApiUrl, {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY}`,
+        Authorization: `Bearer ${process.env.NEXT_PRIVATE_PAYSTACK_SECRET_KEY}`,
       },
     });
 
