@@ -91,11 +91,17 @@ const ContactUs = () => {
                 <p className="mb-4">
                   Visit our office at the address below:
                 </p>
+                <div className="flex gap-4 items-center">
                 <p className="mb-2 text-gray-700 font-medium">
                   9, Oritshe Street,<br />
                   Obafemi Awolowo way,<br />
                   Ikeja, Lagos, Nigeria.
                 </p>
+                <p className="mb-2 text-gray-700 font-medium">
+                 30B, Oladimeji Alo Street,<br />
+                 Off Freedom Way – Lekki Phase 1, Lagos
+                </p>
+                </div>
               </div>
             </div>
             {/* Contact Form */}
