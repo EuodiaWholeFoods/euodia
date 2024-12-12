@@ -1,17 +1,17 @@
 "use client";
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { client } from "@/utils/sanity/client";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { client } from '@/utils/sanity/client';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Fetch dishes from Sanity
 async function getDishes() {
-  const query = `[_type == "bestSellingDish" && !(_id in path("drafts."))] | order(sortOrder asc) {
+  const query = `*[_type == "bestSellingDish" && !(_id in path("drafts.*"))] | order(sortOrder asc) {
     _id,
     title,
-    "imageUrl": image.asset->url,
+    image,
     description
   }`;
 
@@ -44,11 +44,9 @@ const BestSellerDishes = () => {
     fetchDishes();
   }, []);
 
-  console.log(dishes);
-
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
   };
 
   return (
@@ -59,12 +57,9 @@ const BestSellerDishes = () => {
       variants={containerVariants}
     >
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-center mb-10 text-gray-800">
-          Popular Dishes
-        </h2>
+        <h2 className="text-4xl font-extrabold text-center mb-10 text-gray-800">Popular Dishes</h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          Discover our top-selling dishes, crafted with the freshest ingredients
-          and bursting with rich flavors. Every dish is a feast for the senses.
+          Discover our top-selling dishes, crafted with the freshest ingredients and bursting with rich flavors. Every dish is a feast for the senses.
         </p>
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -78,7 +73,7 @@ const BestSellerDishes = () => {
               >
                 <div className="relative h-56">
                   <Image
-                    src={dish.imageUrl}
+                    src={dish.image.asset.url}
                     alt={dish.title}
                     layout="fill"
                     objectFit="cover"
@@ -97,9 +92,7 @@ const BestSellerDishes = () => {
               </motion.div>
             ))
           ) : (
-            <p className="text-center col-span-full">
-              No dishes available at the moment.
-            </p>
+            <p className="text-center col-span-full">No dishes available at the moment.</p>
           )}
         </div>
       </div>
