@@ -2,6 +2,8 @@ import { verifyPaystackPayment } from "@/utils/lib/verify";
 import { updateTransactionStatus } from "@/utils/sanity/client";
 
 export const dynamic = "force-dynamic";
+
+
 export const GET = async (req) => {
   try {
     const { searchParams } = new URL(req.url);

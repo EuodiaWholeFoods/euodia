@@ -39,19 +39,19 @@ export default function CustomersPage() {
     fetchCustomers();
   }, []);
 
-  const totalPages = Math.ceil(filteredCustomers.length / pageSize);
-  const paginatedData = filteredCustomers.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const totalPages = Math.ceil(filteredCustomers?.length / pageSize);
+  const paginatedData = filteredCustomers?.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   useEffect(() => {
     let updatedCustomers = customers;
 
     if (filter !== "all") {
-      updatedCustomers = customers.filter(customer => customer.isAnonymous === (filter === "anonymous"));
+      updatedCustomers = customers?.filter(customer => customer?.isAnonymous === (filter === "anonymous"));
     }
 
     if (searchTerm) {
-      updatedCustomers = updatedCustomers.filter(customer => 
-        Object.values(customer).some(val => 
+      updatedCustomers = updatedCustomers?.filter(customer => 
+        Object.values(customer)?.some(val => 
           String(val).toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
@@ -84,19 +84,19 @@ export default function CustomersPage() {
     {
       title: "Order Count",
       key: "orderCount",
-      render: (data) => <span>{data.orderCount}</span>,
+      render: (data) => <span>{data?.orderCount ?? 0}</span>,
     },
     {
       title: "Total Spent",
       key: "totalSpent",
-      render: (data) => <span>{`₦${data.totalSpent.toFixed(2)}`}</span>,
+      render: (data) => <span>{`₦${data?.totalSpent?.toFixed(2) ?? 0}`}</span>,
     },
     {
       title: "Date Joined",
       key: "createdAt",
       render: (data) => {
         const date = new Date(data.createdAt);
-        const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+        const formattedDate = `${date?.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
         return <span>{formattedDate}</span>;
       },
     },
@@ -104,8 +104,8 @@ export default function CustomersPage() {
       title: "Customer Type",
       key: "isAnonymous",
       render: (data) => (
-        <span className={`py-1 px-2 rounded-full ${data.isAnonymous ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'}`}>
-          {data.isAnonymous ? 'Anonymous' : 'Registered'}
+        <span className={`py-1 px-2 rounded-full ${data?.isAnonymous ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'}`}>
+          {data?.isAnonymous ? 'Anonymous' : 'Registered'}
         </span>
       ),
     },

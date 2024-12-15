@@ -187,7 +187,6 @@ export async function POST(req) {
       ...item,
       _key: item._key || uuidv4(), // Use existing _key if present, otherwise generate a new one
     }));
-console.log("product ewith keys ==>>>", productsWithKeys)
     // Proceed with the order processing
     const paymentResponse = await initializePaystack(formattedEmail, amount);
     const transactionRef = paymentResponse?.data.reference;

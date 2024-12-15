@@ -5,7 +5,16 @@ import { motion } from 'framer-motion';
 import { client } from '@/utils/sanity/client';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import imageUrlBuilder from '@sanity/image-url';
 
+
+// Configure the image URL builder
+const builder = imageUrlBuilder(client);
+
+// Helper function to build the image URL
+function urlFor(source) {
+  return builder.image(source).url();
+}
 // Fetch dishes from Sanity
 async function getDishes() {
   const query = `*[_type == "bestSellingDish" && !(_id in path("drafts.*"))] | order(sortOrder asc) {
@@ -73,7 +82,9 @@ const BestSellerDishes = () => {
               >
                 <div className="relative h-56">
                   <Image
-                    src={dish.image.asset.url}
+                        src={urlFor(dish.image)}
+
+                    // src={dish.image.asset._ref}
                     alt={dish.title}
                     layout="fill"
                     objectFit="cover"
