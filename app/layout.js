@@ -2,6 +2,7 @@ import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {GoogleTagManager} from "@next/third-parties/google"
 
 
 export const metadata = {
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
       <body className=" h-full">
         <div className="flex-grow">
           <ToastContainer />
+          <GoogleTagManager gtmId="G-V2FLGXLQLB"/>
           <StoreProvider>{children}</StoreProvider>
         </div>
       </body>
