@@ -39,3 +39,11 @@ to accept live orders.
   and a real authenticated login redirect have not been verified.
 - No credentials are tracked. No account, email, or payment mutations were made
   during these checks. The existing statistics query error remains confirmed.
+
+
+## Guest checkout follow-up
+
+The checkout corrections are documented in [CHECKOUT_DEPLOYMENT.md](CHECKOUT_DEPLOYMENT.md).
+The initial checkout/payment blockers listed above describe the previous version;
+remaining data-access, statistics, and dependency issues still require separate work.
+Configure the Paystack webhook and validate test payments/email before production.
