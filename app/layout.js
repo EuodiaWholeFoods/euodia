@@ -2,8 +2,7 @@ import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {GoogleTagManager} from "@next/third-parties/google"
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata = {
   title: "Euodia Whole Foods - Healthy, Therapeutic Meals for Wellness and Longevity",
@@ -31,26 +30,21 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico", // Correct the path to start from the root
-    apple: "/apple-touch-icon.png",
+    apple: "/icon/apple-touch-icon.png",
     other: [
       {
         rel: "icon",
-        url: "/favicon-32x32.png",
+        url: "/icon/favicon-32x32.png",
         sizes: "32x32",
       },
       {
         rel: "icon",
-        url: "/favicon-16x16.png",
+        url: "/icon/favicon-16x16.png",
         sizes: "16x16",
       },
       {
         rel: "manifest",
         url: "/site.webmanifest",
-      },
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-        color: "#5bbad5",
       },
     ],
   },
@@ -65,9 +59,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
       <body className=" h-full">
+        <GoogleAnalytics gaId="G-V2FLGXLQLB" />
         <div className="flex-grow">
           <ToastContainer />
-          <GoogleTagManager gtmId="G-V2FLGXLQLB"/>
           <StoreProvider>{children}</StoreProvider>
         </div>
       </body>
